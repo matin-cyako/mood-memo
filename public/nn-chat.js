@@ -14,7 +14,12 @@ if (formElement) {
 
     const selectedStampInput = formElement.querySelector('input[name="stamp"]:checked');
     const stampClass = selectedStampInput ? selectedStampInput.value : 'bi-chat-left-text';
-    textareaElement.value = `${stampClass} ${comment}`;
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'content';
+    hiddenInput.value = `${stampClass} ${comment}`;
+    formElement.appendChild(hiddenInput);
+    textareaElement.name = '';
     formElement.submit();
   });
 
